@@ -1,54 +1,49 @@
 package com.wecp.progressive.entity;
 
-import java.util.List;
+public class Accounts implements Comparable<Accounts> {
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-
-@Entity
-public class Accounts {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private Double balance;
-
-    @ManyToOne
-    Customers customers;
-
-    @OneToMany(mappedBy = "accounts",cascade = CascadeType.ALL,orphanRemoval = true)
-    List<Transactions> transactions;
-    
-    public Customers getCustomers() {
-        return customers;
-    }
-
-    public void setCustomers(Customers customers) {
-        this.customers = customers;
-    }
+    private int accountId;
+    private int customerId;
+    private double balance;
 
     public Accounts() {
+        // constrcutor
     }
-    
-    public Accounts(Integer id, Double balance) {
-        this.id = id;
+
+    public Accounts(int accountId, int customerId, double balance) {
+        this.accountId = accountId;
+        this.customerId = customerId;
         this.balance = balance;
     }
-    public Integer getId() {
-        return id;
+
+    // Getters and setters
+    public int getAccountId() {
+        return accountId;
     }
-    public void setId(Integer id) {
-        this.id = id;
+
+    public void setAccountId(int accountId) {
+        this.accountId = accountId;
     }
-    public Double getBalance() {
+
+    public int getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
+    }
+
+    public double getBalance() {
         return balance;
     }
-    public void setBalance(Double balance) {
+
+    public void setBalance(double balance) {
         this.balance = balance;
     }
-    
+
+    @Override
+    public int compareTo(Accounts otherAccounts) {
+        // Implement comparison logic based on account balance
+        return Double.compare(this.getBalance(), otherAccounts.getBalance());
+    }
 }
