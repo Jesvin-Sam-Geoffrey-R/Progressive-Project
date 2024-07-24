@@ -22,7 +22,6 @@ export class CustomerTS {
           console.log(`Username: ${this.username}`);
           console.log(`Password: ${this.password}`);
           console.log(`Role: ${this.role}`);
-          console.log("------");
       }
   }
  
