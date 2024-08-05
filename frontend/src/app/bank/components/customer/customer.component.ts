@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { Customer } from '../../types/Customer';
 import { BankService } from '../../services/bank.service';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   selector: 'app-customer',
@@ -18,7 +19,8 @@ export class CustomerComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private banksService: BankService
+    private banksService: BankService,
+    private   authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -27,6 +29,7 @@ export class CustomerComponent implements OnInit {
       email: ["", [Validators.required]],
       username: ["", [Validators.required]],
       password: ["", [Validators.required]],
+      role:["",[Validators.required]]
     });
   }
   hasSpecialCharacters(inputString:string):boolean {
@@ -68,7 +71,7 @@ export class CustomerComponent implements OnInit {
        new Customer(data);
       
       ;
-      this.banksService.addCustomer(customer).subscribe(
+      this.authService.createUser(customer).subscribe(
         (res: any) => {
           this.customerSuccess$ = of('Customer created successfully');
         },
@@ -78,5 +81,5 @@ export class CustomerComponent implements OnInit {
       );
     }
   }
-
+ 
 }

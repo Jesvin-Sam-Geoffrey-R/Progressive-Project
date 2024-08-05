@@ -2,9 +2,12 @@ import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { HttpClient } from "@angular/common/http";
 import { Transaction } from "../types/Transaction";
+import { Account } from "../types/Account";
+
+//import { Transaction } from "../types/Transaction";
 import { Observable } from "rxjs";
 import { Customer } from "../types/Customer";
-import { Account } from "../types/Account";
+//import { Account } from "../types/Account";
 // import { transition } from "@angular/animations";
 
 @Injectable({
@@ -81,6 +84,7 @@ export class BankService {
     const url = `${this.baseUrl}/customers/${customer.customerId}`;
     return this.http.put<Customer>(url, customer);
   }
+ 
 
   deleteAccount(accountId: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}/accounts/${accountId}`);
