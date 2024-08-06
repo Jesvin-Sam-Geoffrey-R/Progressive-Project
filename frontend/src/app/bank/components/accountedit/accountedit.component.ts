@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-account',
   templateUrl: './accountedit.component.html',
-  styleUrls: ['./accountedit.component.scss']
+  styleUrls: ['./accountedit.component.css']
 })
 export class EditAccountComponent implements OnInit {
 changedVal() {
